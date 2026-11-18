@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 5 · Lesson 1 — Getting Started & Vocabulary (Grade 10 · Extra Class)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", Arial, sans-serif; background: #FDF6E3; color: #16324F; min-height: 100vh; }
+  header { background: #16324F; color: #fff; padding: 10px 18px; display: flex; justify-content: space-between; align-items: center; }
+  header .brand { font-weight: 800; font-size: 1.05rem; }
+  header .prog { font-size: 1rem; background: #C9A227; padding: 4px 14px; border-radius: 20px; font-weight: 700; }
+  .slide { display: none; max-width: 1180px; margin: 0 auto; padding: 26px 22px 90px; }
+  .slide.on { display: block; }
+  h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); text-align: center; margin: 12px 0 6px; }
+  h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); margin-bottom: 10px; }
+  .stage { display: inline-block; background: #16324F; color: #F2C94C; font-weight: 800; font-size: 1rem; padding: 4px 14px; border-radius: 14px; margin-bottom: 8px; }
+  .sub { text-align: center; font-size: 1.25rem; color: #5a4a1f; margin-bottom: 16px; }
+  .instr { font-size: 1.28rem; background: #FFF3CD; border-left: 8px solid #C9A227; padding: 12px 16px; border-radius: 10px; margin-bottom: 18px; }
+  .card { background: #fff; border: 2px solid #E4D6B0; border-radius: 16px; padding: 20px; box-shadow: 0 3px 0 #E4D6B0; margin-bottom: 16px; }
+  .bigbtn { display: inline-block; background: #2E9E5B; color: #fff; font-size: 1.5rem; font-weight: 800; border: none; border-radius: 14px; padding: 16px 42px; cursor: pointer; }
+  .center { text-align: center; }
+  nav.foot { position: fixed; bottom: 0; left: 0; right: 0; background: #16324F; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  nav.foot button { background: #C9A227; color: #16324F; font-weight: 800; font-size: 1.15rem; border: none; border-radius: 10px; padding: 10px 26px; cursor: pointer; }
+  nav.foot button:disabled { opacity: .35; cursor: default; }
+  nav.foot .dots { color: #fff; font-size: 1rem; }
+  video { width: 100%; border-radius: 14px; background: #000; }
+  audio { width: 100%; margin-bottom: 14px; }
+  .vframe { flex: none; max-width: 980px; margin: 0 auto; }
+  .flowmap { font-size: 1.22rem; line-height: 1.75; }
+  .fcwrap { max-width: 900px; margin: 0 auto; }
+  .fcmeta { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .fccount { font-size: 1.3rem; font-weight: 800; white-space: nowrap; }
+  .fcbar { flex: 1; height: 14px; background: #EFE3C0; border-radius: 8px; overflow: hidden; }
+  .fcbar > div { height: 100%; background: #2E9E5B; width: 0%; transition: width .3s; }
+  .fcstage { perspective: 1200px; height: min(58vh, 560px); }
+  .fcin { position: relative; width: 100%; height: 100%; transition: transform .55s; transform-style: preserve-3d; cursor: pointer; }
+  .fcin.flip { transform: rotateY(180deg); }
+  .fcface { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 20px; overflow: hidden; }
+  .fcfront { border: 4px solid #C9A227; background: #FFE9A8; }
+  .fcfront img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fchint { position: absolute; left: 0; right: 0; bottom: 0; background: rgba(255,248,225,.94); border-top: 3px solid #C9A227; padding: 12px 18px; font-size: clamp(1.2rem, 2.4vw, 1.5rem); font-weight: 700; text-align: center; }
+  .fcback { background: #EAF4FF; border: 4px solid #7FB2E5; transform: rotateY(180deg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
+  .fcw { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; }
+  .fcipa { font-size: 1.45rem; color: #555; }
+  .fcvn { font-size: 1.5rem; font-weight: 800; color: #9C6B00; background: #FFE9A8; padding: 4px 20px; border-radius: 14px; }
+  .fcdef { font-size: 1.35rem; line-height: 1.45; }
+  .fcex { font-size: 1.3rem; font-style: italic; color: #37506B; }
+  .fcnav { display: flex; justify-content: space-between; gap: 10px; margin-top: 14px; }
+  .fcnav button { flex: 1; font-size: 1.3rem; font-weight: 800; padding: 14px 8px; border-radius: 12px; border: none; cursor: pointer; background: #16324F; color: #fff; }
+  .fcnav button.flipbtn { background: #C9A227; color: #16324F; }
+  .spk { background: #16324F; color: #fff; border: none; border-radius: 24px; padding: 10px 22px; font-size: 1.15rem; font-weight: 700; cursor: pointer; }
+  .q { margin-bottom: 18px; }
+  .qtext { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin-bottom: 10px; line-height: 1.45; }
+  .opts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .opt { font-size: 1.25rem; padding: 12px 20px; border-radius: 12px; border: 3px solid #B9C6D4; background: #fff; cursor: pointer; font-weight: 600; }
+  .opt:hover { border-color: #16324F; }
+  .opt.right { background: #D8F3DC; border-color: #2E9E5B; }
+  .opt.wrong { background: #FDE2E2; border-color: #C0392B; }
+  .opt:disabled { cursor: default; opacity: .92; }
+  .explain { display: none; margin-top: 8px; font-size: 1.12rem; font-style: italic; color: #37506B; }
+  .explain.show { display: block; }
+  select.gap { font-size: 1.22rem; padding: 6px 10px; border-radius: 8px; border: 2px solid #B9C6D4; max-width: 100%; }
+  input.gapin { font-size: 1.22rem; padding: 6px 10px; border-radius: 8px; border: 2px solid #B9C6D4; width: 220px; max-width: 70vw; font-family: inherit; }
+  .selrow { font-size: 1.35rem; margin-bottom: 14px; line-height: 2; }
+  .toggle { background: #7FB2E5; color: #16324F; font-weight: 800; border: none; border-radius: 10px; padding: 10px 22px; font-size: 1.15rem; cursor: pointer; margin: 8px 0; }
+  .ordrow { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+  .ord { font-size: 1.3rem; padding: 12px 18px; border-radius: 12px; border: 3px solid #B9C6D4; background: #fff; cursor: pointer; font-weight: 700; }
+  .ord.picked { background: #16324F; color: #fff; border-color: #16324F; }
+  .ordseq { font-size: 1.35rem; min-height: 2rem; font-weight: 700; color: #9C6B00; }
+  .read p { font-size: 1.3rem; line-height: 1.6; margin-bottom: 12px; }
+  .langbox { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px){ .langbox { grid-template-columns: 1fr; } }
+  .langbox .card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+  .langbox .card p, .langbox .card li { font-size: 1.25rem; line-height: 1.55; }
+  .model { display: none; }
+  .model.show { display: block; }
+  .mapimg { width: 100%; border-radius: 14px; display: block; }
+  textarea { width: 100%; font-size: 1.25rem; padding: 12px; border: 2px solid #B9C6D4; border-radius: 10px; min-height: 110px; font-family: inherit; }
+  input.name { font-size: 1.2rem; padding: 10px; border: 2px solid #B9C6D4; border-radius: 10px; width: 100%; margin-bottom: 12px; }
+  .bigscore { font-size: 2.1rem; font-weight: 800; text-align: center; color: #16324F; }
+  #report table { width: 100%; border-collapse: collapse; font-size: 1.15rem; }
+  #report td, #report th { border: 1px solid #E4D6B0; padding: 8px 10px; text-align: left; }
+  #report th { background: #16324F; color: #F2C94C; }
+  footer.credit { text-align: center; padding: 18px 12px 84px; color: #5a4a1f; font-size: 1.02rem; }
+  .stars { font-size: 2.6rem; text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <span class="brand">💡 Unit 5 · Inventions — Lesson 1</span>
+  <span class="prog" id="scoreChip">⭐ 0 / 93</span>
+</header>
+
+<!-- 0 HOME -->
+<section class="slide on">
+  <div class="stars">💡 🤖 📱 💻 🔌</div>
+  <h1>A Visit to the Invention Exhibition</h1>
+  <p class="sub">Unit 5 · Inventions — Lesson 1: Getting Started & Vocabulary · Grade 10 · Extra Class (B1+–B2)</p>
+  <div class="card flowmap">
+    <b>Today's journey:</b><br>
+    🎮 <b>Stage 1 – Warmer:</b> a game to remember Unit 4 (For a Better Community)<br>
+    🃏 <b>Stage 2 – Key words:</b> 20 flashcards, matching and gap-fill <i>(invention, experiment, device, hardware, software, artificial intelligence…)</i><br>
+    💡 <b>Grammar:</b> present perfect <i>(have/has + V3 · since / for · just / already / yet)</i><br>
+    🎬 <b>Stage 3 – The story video:</b> watch, check, read, listen, speak and write<br>
+    🏠 <b>Homework:</b> 30 questions
+  </div>
+  <p class="center"><button class="bigbtn" onclick="go(1)">▶ Start the lesson</button></p>
+</section>
+
+<!-- 1 WARMER GAME -->
+<section class="slide">
+  <span class="stage">STAGE 1 · WARMER</span>
+  <h2>🎮 Game — Remember Unit 4!</h2>
+  <div class="instr">Answer 10 questions to review Unit 4: For a Better Community.</div>
+  <div id="warmBox"></div>
+</section>
+
+<!-- 2 FLASHCARDS -->
+<section class="slide">
+  <span class="stage">STAGE 2 · VOCABULARY</span>
+  <h2>🃏 Flashcards — 20 Key Words of Unit 5</h2>
+  <div class="instr">One card at a time! Look at the picture, read the hint question and guess the word or phrase. Then flip the card, listen and repeat!</div>
+  <div class="fcwrap">
+    <div class="fcmeta"><span class="fccount" id="fcCount">Card 1 / 20</span><div class="fcbar"><div id="fcProg"></div></div></div>
+    <div class="fcstage"><div class="fcin" id="fcCard"></div></div>
+    <div class="fcnav">
+      <button type="button" onclick="fcMove(-1)">⬅ Previous</button>
+      <button type="button" class="flipbtn" onclick="fcFlip()">🔄 Flip card</button>
+      <button type="button" onclick="fcMove(1)">Next ➡</button>
+    </div>
+  </div>
+</section>
+
+<!-- 3 VOCAB CHECK: MATCHING -->
+<section class="slide">
+  <span class="stage">STAGE 2 · CHECK VOCABULARY</span>
+  <h2>🧩 Matching — Match the word to its meaning</h2>
+  <div class="instr">Choose the correct Vietnamese meaning for each word.</div>
+  <div class="card" id="matchBox"></div>
+</section>
+
+<!-- 4 VOCAB CHECK: GAP FILL -->
+<section class="slide">
+  <span class="stage">STAGE 2 · CHECK VOCABULARY</span>
+  <h2>✏️ Gap-fill — Complete the sentences</h2>
+  <div class="instr">Choose the correct word for each sentence.</div>
+  <div class="card" id="vgapBox"></div>
+</section>
+
+<!-- 5 GRAMMAR TEACH -->
+<section class="slide">
+  <span class="stage">GRAMMAR</span>
+  <h2>💡 Grammar — Present Perfect (have / has + V3)</h2>
+  <div class="langbox">
+    <div class="card">
+      <h3>📝 Form &amp; Experience / Result</h3>
+      <p><b>Form:</b> have / has + past participle (V3). Use the present perfect for something that happened in the past but is still true or important NOW, or for life experiences.</p>
+      <p style="margin-top:8px;">• <i>I <b>have lost</b> my key.</i> (= I lost it in the past — and I can't open the door now.)</p>
+      <p style="margin-top:8px;">• <i>Scientists <b>have invented</b> many useful devices.</i></p>
+      <p style="margin-top:8px;">• <i><b>Have</b> you ever <b>tried</b> an e-reader?</i></p>
+    </div>
+    <div class="card">
+      <h3>⏰ since / for — Started in the Past, Still True</h3>
+      <p>Use <b>since</b> + a point in time (since 2020, since Tet) and <b>for</b> + a period of time (for three years, for a long time).</p>
+      <p style="margin-top:8px;">• <i>Phong <b>has saved</b> money <b>since</b> Tet holiday.</i></p>
+      <p style="margin-top:8px;">• <i>They <b>have used</b> this software <b>for</b> two years.</i></p>
+      <p style="margin-top:8px;">• <i>Since laptops were invented, they <b>have changed</b> our lives.</i></p>
+    </div>
+  </div>
+  <div class="card">
+    <p style="font-size:1.25rem; line-height:1.6;">⚡ <b>just / already / yet / recently</b> — for very recent or completed actions:<br>
+    • <i>He <b>has just finished</b> his homework.</i> (just = a very short time ago)<br>
+    • <i>We <b>have already seen</b> the robot exhibition.</i> (already = before we expected)<br>
+    • <i>Has she charged her phone <b>yet</b>?</i> · <i>She hasn't charged it <b>yet</b>.</i> (yet = in questions and negatives, at the end)<br>
+    ⚠️ Do NOT use the present perfect with a finished past time: <i>Edison invented the light bulb in 1879.</i> (past simple — NOT 'has invented')</p>
+  </div>
+</section>
+
+<!-- 6 GRAMMAR CHECK -->
+<section class="slide">
+  <span class="stage">GRAMMAR · CHECK</span>
+  <h2>✏️ Check grammar — Choose the correct answer</h2>
+  <div id="pracBox"></div>
+</section>
+
+<!-- 7 VIDEO -->
+<section class="slide">
+  <span class="stage">STAGE 3 · THE STORY VIDEO</span>
+  <h2>🎬 Watch — A Visit to the Invention Exhibition</h2>
+  <div class="instr">Watch the story. What do Mai and Tuan see at the Invention Exhibition?</div>
+  <div class="vframe"><video controls preload="metadata" src="assets/story.mp4"></video></div>
+</section>
+
+<!-- 8 CHECK INFO: ORDER -->
+<section class="slide">
+  <span class="stage">STAGE 3 · CHECK THE VIDEO</span>
+  <h2>🔎 Check the video — Put the events in order</h2>
+  <div class="instr">Click the events in the order they happen in the video.</div>
+  <div class="card">
+    <div class="ordrow" id="ordRow"></div>
+    <div class="ordseq" id="ordSeq">Your order: …</div>
+    <p style="margin-top:10px;"><button class="toggle" onclick="checkOrder()">✔ Check</button> <button class="toggle" onclick="resetOrder()">↺ Try again</button></p>
+    <div class="explain" id="ordEx"></div>
+  </div>
+</section>
+
+<!-- 9 CHECK INFO: TRUE/FALSE -->
+<section class="slide">
+  <span class="stage">STAGE 3 · CHECK THE VIDEO</span>
+  <h2>🔎 Check the information — True or False?</h2>
+  <div class="instr">Are the sentences true or false? Watch the video again if you need.</div>
+  <div class="vframe" style="margin-bottom:16px;"><video controls preload="metadata" src="assets/story.mp4"></video></div>
+  <div id="tfBox"></div>
+</section>
+
+<!-- 10 READING -->
+<section class="slide">
+  <span class="stage">STAGE 3 · READING</span>
+  <h2>📖 Reading — A Visit to the Invention Exhibition</h2>
+  <div class="instr">Read the story, then answer the questions.</div>
+  <div class="card read">
+    <p>One Saturday morning, Mai and Tuan's class visited the City Science Museum to see a special Invention Exhibition. In the hall of famous inventions, their teacher showed them the first telephone and the light bulb invented by Thomas Edison. “Inventions like these have completely changed our lives,” she said. Next, Mai tried an e-reader. She was amazed because the small device could store hundreds of books. “I have never seen anything like it!” she said.</p>
+    <p>Then Tuan chatted with a chatbot on a big screen. It answered all his questions and booked a ticket for the science show in seconds. After that, a robot guide walked towards the class, greeted everyone and talked with the visitors. The students also watched a robot vacuum cleaner at work. “You only press the Clean button — or the Start button — and it cleans the whole hall by itself,” the teacher explained. “It is so convenient!” Mai said.</p>
+    <p>Before they left, the teacher asked: “Inventions have changed the way we live, study and work. Which invention do you like best?” The students discussed their favourite inventions happily. On the bus home, Mai smiled and said: “One day, I want to invent a useful device for our classroom.” Tuan agreed at once: “Great idea! Let's present it at the school Technology Fair!”</p>
+  </div>
+  <div id="readBox"></div>
+</section>
+
+<!-- 11 LISTENING -->
+<section class="slide">
+  <span class="stage">STAGE 3 · LISTENING</span>
+  <h2>🎧 Listening — Exam Practice (Mid-term Format)</h2>
+  <div class="instr">🎧 Listen to the recording — each part is played TWICE. <b>Part 1:</b> complete the form with ONE word or a number. <b>Part 2:</b> decide True or False. The answers are NOT written in the questions — listen for the meaning!</div>
+  <audio controls preload="metadata" src="assets/listening.mp3"></audio>
+  <div class="card">
+    <p style="font-size:1.35rem; font-weight:800; margin-bottom:8px;">PART 1 — Complete the form: A TALK — GREAT INVENTIONS THAT CHANGED THE WORLD</p>
+    <div id="formBox"></div>
+  </div>
+  <p style="font-size:1.35rem; font-weight:800; margin:14px 0 8px;">PART 2 — True or False?</p>
+  <div id="ltfBox"></div>
+</section>
+
+<!-- 12 SPEAKING -->
+<section class="slide">
+  <span class="stage">STAGE 3 · SPEAKING</span>
+  <h2>🗣️ Speaking — Talk about inventions and their uses</h2>
+  <div class="instr">Work in pairs. Talk about the uses of these inventions: a smartphone, an e-reader and a robot vacuum cleaner. Say what each invention helps us to do, and give an example from your own life.</div>
+  <div class="card" style="padding:10px;"><img class="mapimg" src="assets/cards/e-reader.jpg" alt="A student reading on an e-reader"></div>
+  <div class="card">
+    <p style="font-size:1.28rem; line-height:1.6;"><b>Useful language:</b> … help(s) / allow(s) us to… · We can use … to / for… · … is used for… · For example, … · I use it every day to… · It is very convenient because…</p>
+    <button class="toggle" onclick="document.getElementById('spModel').classList.toggle('show')">👀 Show model / Hide model</button>
+    <div class="model" id="spModel">
+      <p style="font-size:1.28rem; line-height:1.6;"><b>A:</b> Let's talk about inventions. In my opinion, the smartphone is the most useful one. Smartphones help us to study, communicate and find information quickly. We can use them to learn English with educational apps.<br><b>B:</b> I agree. I also love e-readers. An e-reader is used for storing and reading hundreds of books, so I can read novels anywhere.<br><b>A:</b> And what about robot vacuum cleaners?<br><b>B:</b> They allow us to clean the house without doing any work. My family uses one every weekend — it is very convenient!</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 WRITING -->
+<section class="slide">
+  <span class="stage">STAGE 3 · WRITING</span>
+  <h2>✍️ Writing — The benefits of smartphones in learning</h2>
+  <div class="instr">Write a paragraph (100–120 words) about the benefits of smartphones in learning. Give TWO or THREE benefits with examples, and use at least FIVE words from this lesson.</div>
+  <div class="card">
+    <p style="font-size:1.25rem; margin-bottom:10px;"><b>Sentence starters:</b> Smartphones are one of the most useful inventions for students. · Firstly, smartphones help us to… · For example, … · Secondly, they allow us to… · Finally, … · In short, …</p>
+    <p style="font-size:1.25rem; margin-bottom:10px;"><b>Useful language:</b> smartphone · device · convenient · valuable · software / apps · store information · communicate · look up new words · study anywhere · suitable for learning</p>
+    <textarea id="writeBox" placeholder="Write here…"></textarea>
+    <button class="toggle" onclick="document.getElementById('wrModel').classList.toggle('show')">👀 Show model / Hide model</button>
+    <div class="model" id="wrModel">
+      <p style="font-size:1.25rem; line-height:1.6;">Smartphones are one of the most useful inventions for students today. Firstly, these devices help us to learn anywhere and at any time. For example, we can use educational apps to practise vocabulary or watch lessons again at home. Secondly, smartphones allow us to look up new words and store a lot of information, photos and documents in a small device. They are also convenient for communicating with teachers and classmates when we work in groups. In short, smartphones are a valuable tool that makes learning easier, faster and more interesting for every student.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 14 HOMEWORK A -->
+<section class="slide">
+  <span class="stage">HOMEWORK · PART A</span>
+  <h2>🏠 Homework — Part A: Vocabulary (1–10)</h2>
+  <div class="instr">Choose the correct word for each sentence.</div>
+  <div id="hwABox"></div>
+</section>
+
+<!-- 15 HOMEWORK B -->
+<section class="slide">
+  <span class="stage">HOMEWORK · PART B</span>
+  <h2>🏠 Homework — Part B: Present perfect (11–20)</h2>
+  <div class="instr">Choose the correct word for each sentence.</div>
+  <div id="hwBBox"></div>
+</section>
+
+<!-- 16 HOMEWORK C -->
+<section class="slide">
+  <span class="stage">HOMEWORK · PART C</span>
+  <h2>🏠 Homework — Part C: The story (21–30)</h2>
+  <div class="instr">Choose the correct answer about Mai and Tuan's story.</div>
+  <div id="hwCBox"></div>
+</section>
+
+<!-- 17 REPORT -->
+<section class="slide">
+  <span class="stage">REPORT CARD</span>
+  <h2>📸 Report Card</h2>
+  <div class="card" id="report">
+    <p style="font-size:1.3rem; font-weight:800; margin-bottom:8px;">Take a photo/screenshot of your report card and send it to your teacher!</p>
+    <input class="name" id="stuName" type="text" placeholder="Your name: ………………">
+    <div class="bigscore" id="hwScore">🏠 HOMEWORK: 0 / 30</div>
+    <div class="bigscore" id="finalScore" style="font-size:1.5rem;">⭐ Total: 0 / 93</div>
+    <table>
+      <tr><th>Part</th><th>Score</th></tr>
+      <tr><td>Warmer game (Unit 4)</td><td id="r-warm">–</td></tr>
+      <tr><td>Vocabulary — Matching</td><td id="r-match">–</td></tr>
+      <tr><td>Vocabulary — Gap-fill</td><td id="r-vgap">–</td></tr>
+      <tr><td>Grammar check</td><td id="r-prac">–</td></tr>
+      <tr><td>Video check — Order the events</td><td id="r-ord">–</td></tr>
+      <tr><td>Video check — True / False</td><td id="r-tf">–</td></tr>
+      <tr><td>Reading</td><td id="r-read">–</td></tr>
+      <tr><td>Listening — Form completion</td><td id="r-lgap">–</td></tr>
+      <tr><td>Listening — True / False</td><td id="r-ltf">–</td></tr>
+      <tr><td>Homework A — Vocabulary</td><td id="r-hwA">–</td></tr>
+      <tr><td>Homework B — Present perfect</td><td id="r-hwB">–</td></tr>
+      <tr><td>Homework C — The story</td><td id="r-hwC">–</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer class="credit">✍️ Created by Mrs. Thanh Giang — Giáo viên tiếng Anh, Trường THPT Chuyên Thoại Ngọc Hầu, tỉnh An Giang</footer>
+
+<nav class="foot">
+  <button id="prevBtn" onclick="go(cur-1)">⬅ Back</button>
+  <span class="dots" id="dots"></span>
+  <button id="nextBtn" onclick="go(cur+1)">Next ➡</button>
+</nav>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+const scores = { warm: 0, match: null, vgap: null, prac: 0, ord: null, tf: 0, read: 0, lgap: null, ltf: 0, hwA: 0, hwB: 0, hwC: 0 };
+const maxs = { warm: 10, match: 10, vgap: 8, prac: 8, ord: 4, tf: 5, read: 6, lgap: 6, ltf: 6, hwA: 10, hwB: 10, hwC: 10 };
+const TOTAL = 93;
+function total() { let t = 0; for (const k in maxs) t += (scores[k] || 0); return t; }
+function hwTotal() { return (scores.hwA || 0) + (scores.hwB || 0) + (scores.hwC || 0); }
+function refresh() {
+  document.getElementById('scoreChip').textContent = '⭐ ' + total() + ' / ' + TOTAL;
+  document.getElementById('hwScore').textContent = '🏠 HOMEWORK: ' + hwTotal() + ' / 30';
+  document.getElementById('finalScore').textContent = '⭐ Total: ' + total() + ' / ' + TOTAL;
+  for (const k in maxs) { const el = document.getElementById('r-' + k); if (el) el.textContent = (scores[k] === null ? '–' : scores[k] + ' / ' + maxs[k]); }
+  document.getElementById('dots').textContent = 'Slide ' + (cur + 1) + ' / ' + slides.length;
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').disabled = cur === slides.length - 1;
+}
+function go(i) {
+  if (i < 0 || i >= slides.length) return;
+  slides[cur].classList.remove('on'); cur = i; slides[cur].classList.add('on');
+  window.scrollTo(0, 0); refresh();
+}
+function buildMCQ(boxId, items, key) {
+  const box = document.getElementById(boxId);
+  items.forEach(it => {
+    const wrap = document.createElement('div'); wrap.className = 'card q';
+    const qt = document.createElement('div'); qt.className = 'qtext'; qt.innerHTML = it.q; wrap.appendChild(qt);
+    const opts = document.createElement('div'); opts.className = 'opts';
+    const ex = document.createElement('div'); ex.className = 'explain'; ex.innerHTML = it.ex;
+    it.opts.forEach((op, oi) => {
+      const b = document.createElement('button'); b.className = 'opt'; b.textContent = op;
+      b.onclick = () => {
+        opts.querySelectorAll('.opt').forEach(x => x.disabled = true);
+        if (oi === it.ans) { b.classList.add('right'); scores[key]++; }
+        else { b.classList.add('wrong'); opts.children[it.ans].classList.add('right'); }
+        ex.classList.add('show'); refresh();
+      };
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts); wrap.appendChild(ex); box.appendChild(wrap);
+  });
+}
+function buildTF(boxId, items, key) {
+  const box = document.getElementById(boxId);
+  items.forEach(it => {
+    const wrap = document.createElement('div'); wrap.className = 'card q';
+    const qt = document.createElement('div'); qt.className = 'qtext'; qt.textContent = it.q; wrap.appendChild(qt);
+    const opts = document.createElement('div'); opts.className = 'opts';
+    const ex = document.createElement('div'); ex.className = 'explain'; ex.innerHTML = it.ex;
+    [['True', true], ['False', false]].forEach(([label, val]) => {
+      const b = document.createElement('button'); b.className = 'opt'; b.textContent = label;
+      b.onclick = () => {
+        opts.querySelectorAll('.opt').forEach(x => x.disabled = true);
+        if (val === it.ans) { b.classList.add('right'); scores[key]++; } else { b.classList.add('wrong'); }
+        ex.classList.add('show'); refresh();
+      };
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts); wrap.appendChild(ex); box.appendChild(wrap);
+  });
+}
+function buildSelectCheck(boxId, items, key, doneText) {
+  const box = document.getElementById(boxId);
+  items.forEach(it => {
+    const p = document.createElement('p'); p.className = 'selrow';
+    let html = it.text;
+    it.a.forEach((ans, i) => {
+      const sel = '<select class="gap" data-ans="' + ans + '"><option value="">…</option>' + it.o[i].map(o => '<option>' + o + '</option>').join('') + '</select>';
+      html = html.replace('___', sel);
+    });
+    p.innerHTML = html; box.appendChild(p);
+  });
+  const btn = document.createElement('button'); btn.className = 'toggle'; btn.textContent = '✔ Check';
+  const ex = document.createElement('div'); ex.className = 'explain';
+  btn.onclick = () => {
+    let s = 0, tot = 0;
+    box.querySelectorAll('select.gap').forEach(sel => { tot++; if (sel.value === sel.dataset.ans) { s++; sel.style.borderColor = '#2E9E5B'; } else sel.style.borderColor = '#C0392B'; });
+    scores[key] = s; ex.textContent = 'You got ' + s + ' / ' + tot + '. ' + doneText;
+    ex.classList.add('show'); refresh();
+  };
+  box.appendChild(btn); box.appendChild(ex);
+}
+
+/* ---------- RENDER HELPERS ---------- */
+function renderMCQ(sel, items, key) { buildMCQ(sel.replace('#', ''), items, key); }
+function tfRender(sel, items, key) { buildTF(sel.replace('#', ''), items, key); }
+function selRender(sel, items, key) {
+  const box = document.querySelector(sel);
+  const rows = [];
+  items.forEach(it => {
+    const p = document.createElement('p'); p.className = 'selrow';
+    const label = document.createElement('span'); label.innerHTML = it.q + ' ';
+    const s = document.createElement('select'); s.className = 'gap'; s.dataset.ans = it.opts[it.ans];
+    s.innerHTML = '<option value="">…</option>' + it.opts.map(o => '<option>' + o + '</option>').join('');
+    const ex = document.createElement('div'); ex.className = 'explain'; ex.innerHTML = it.ex || '';
+    p.appendChild(label); p.appendChild(s); p.appendChild(ex);
+    box.appendChild(p); rows.push([s, ex]);
+  });
+  const btn = document.createElement('button'); btn.className = 'toggle'; btn.textContent = '✔ Check';
+  const done = document.createElement('div'); done.className = 'explain';
+  btn.onclick = () => {
+    let sc = 0;
+    rows.forEach(rw => { const s = rw[0], ex = rw[1]; if (s.value === s.dataset.ans) { sc++; s.style.borderColor = '#2E9E5B'; } else s.style.borderColor = '#C0392B'; ex.classList.add('show'); });
+    scores[key] = sc; done.textContent = 'You got ' + sc + ' / ' + items.length + '.'; done.classList.add('show'); refresh();
+  };
+  box.appendChild(btn); box.appendChild(done);
+}
+function buildForm(boxId, fields, key) {
+  const box = document.getElementById(boxId);
+  fields.forEach(f => {
+    const p = document.createElement('p'); p.className = 'selrow';
+    const lab = document.createElement('span'); lab.innerHTML = f.label + ' ';
+    const inp = document.createElement('input'); inp.type = 'text'; inp.className = 'gapin'; inp.dataset.accept = f.accept.join('|');
+    p.appendChild(lab); p.appendChild(inp);
+    if (f.suffix) { const sfx = document.createElement('span'); sfx.textContent = ' ' + f.suffix; p.appendChild(sfx); }
+    box.appendChild(p);
+  });
+  const btn = document.createElement('button'); btn.className = 'toggle'; btn.textContent = '✔ Check';
+  const done = document.createElement('div'); done.className = 'explain';
+  btn.onclick = () => {
+    let sc = 0;
+    box.querySelectorAll('input.gapin').forEach(inp => {
+      const norm = v => v.toLowerCase().replace(/\s+/g, '');
+      const ok = inp.dataset.accept.split('|').map(norm).includes(norm(inp.value));
+      if (ok) { sc++; inp.style.borderColor = '#2E9E5B'; } else inp.style.borderColor = '#C0392B';
+    });
+    scores[key] = sc;
+    done.textContent = 'You got ' + sc + ' / ' + fields.length + '. Answers: Saturday · 14th · 9:30 · the school hall · Quang Huy · notebook.';
+    done.classList.add('show'); refresh();
+  };
+  box.appendChild(btn); box.appendChild(done);
+}
+let fcIdx = 0, fcFlipped = false;
+function fcRender() {
+  const w = FCARDS[fcIdx];
+  const fcCardEl = document.getElementById('fcCard');
+  fcCardEl.classList.remove('flip'); fcFlipped = false;
+  fcCardEl.innerHTML =
+    '<div class="fcface fcfront"><img src="' + w.img + '" alt=""><div class="fchint">❓ ' + w.hint + '</div></div>' +
+    '<div class="fcface fcback"><div class="fcw">' + w.w + '</div>' +
+    '<div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">' +
+    '<button class="spk" type="button" data-a="assets/words/' + w.slug + '.mp3">🔊 Listen</button>' +
+    '<button class="spk" type="button" data-a="assets/words/' + w.slug + '-ex.mp3">🔊 Example</button></div>' +
+    '<div class="fcipa">' + w.ipa + '</div><div class="fcvn">' + w.vn + '</div>' +
+    '<div class="fcdef">' + w.def + '</div><div class="fcex">“' + w.ex + '”</div></div>';
+  fcCardEl.querySelectorAll('.spk').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); new Audio(b.dataset.a).play(); }));
+  document.getElementById('fcCount').textContent = 'Card ' + (fcIdx + 1) + ' / ' + FCARDS.length;
+  document.getElementById('fcProg').style.width = ((fcIdx + 1) / FCARDS.length * 100) + '%';
+}
+function fcFlip() { fcFlipped = !fcFlipped; document.getElementById('fcCard').classList.toggle('flip', fcFlipped); }
+function fcMove(d) { fcIdx = (fcIdx + d + FCARDS.length) % FCARDS.length; fcRender(); }
+function fcInit() { document.getElementById('fcCard').addEventListener('click', fcFlip); fcRender(); }
+let ORDER = [], picked = [];
+function shuffledArr(a) { const arr = a.slice(); for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = arr[i]; arr[i] = arr[j]; arr[j] = t; } return arr; }
+function initOrder(correct, key) {
+  ORDER = correct.slice(); picked = [];
+  const row = document.getElementById('ordRow');
+  shuffledArr(correct).forEach(txt => {
+    const b = document.createElement('button'); b.className = 'ord'; b.textContent = txt;
+    b.onclick = () => {
+      if (b.classList.contains('picked')) { b.classList.remove('picked'); picked = picked.filter(x => x !== txt); }
+      else if (picked.length < ORDER.length) { b.classList.add('picked'); picked.push(txt); }
+      updSeq();
+    };
+    row.appendChild(b);
+  });
+  updSeq();
+}
+function updSeq() { document.getElementById('ordSeq').textContent = 'Your order: ' + (picked.length ? picked.join(' → ') : '…'); }
+function checkOrder() {
+  const ex = document.getElementById('ordEx');
+  let s = 0; picked.forEach((p, i) => { if (ORDER[i] === p) s++; });
+  if (picked.length === ORDER.length) { scores.ord = s; ex.textContent = 'You got ' + s + ' / ' + ORDER.length + ' in the right place. Correct order: ' + ORDER.join(' → ') + '.'; }
+  else { scores.ord = 0; ex.textContent = 'Choose all ' + ORDER.length + ' first!'; }
+  ex.classList.add('show'); refresh();
+}
+function resetOrder() { picked = []; document.querySelectorAll('.ord').forEach(b => b.classList.remove('picked')); updSeq(); document.getElementById('ordEx').classList.remove('show'); }
+function showSlide(i) { go(i); }
+
+/* ---------- WARMER (Unit 4 review) ---------- */
+const warmQ=[{"q": "A ______ is a person who gives their time to help others without being paid.", "opts": ["volunteer", "manager", "teacher", "doctor"], "ans": 0, "ex": "Người tình nguyện giúp đỡ người khác mà không được trả công là <b>volunteer</b> (tình nguyện viên)."}, {"q": "Many kind people ______ warm clothes and money to families in flood areas.", "opts": ["borrow", "donate", "sell", "keep"], "ans": 1, "ex": "<b>donate</b> = quyên góp, tặng (quần áo, tiền) cho người cần giúp đỡ."}, {"q": "Everyone in the local ______ joined hands to build a new library for children.", "opts": ["charity", "orphanage", "community", "company"], "ans": 2, "ex": "Cả <b>community</b> (cộng đồng) địa phương cùng chung tay xây thư viện."}, {"q": "The children who have no parents live and study at the ______.", "opts": ["hospital", "library", "school hall", "orphanage"], "ans": 3, "ex": "Trẻ mồ côi sống và học tại <b>orphanage</b> (trại trẻ mồ côi)."}, {"q": "Delivering free meals to elderly people can ______ them a lot.", "opts": ["deliver", "benefit", "donate", "volunteer"], "ans": 1, "ex": "Việc giao bữa ăn miễn phí có thể <b>benefit</b> (mang lại lợi ích cho) người cao tuổi rất nhiều."}, {"q": "Volunteers travelled for hours to reach a ______ area high in the mountains.", "opts": ["busy", "crowded", "remote", "central"], "ans": 2, "ex": "Vùng núi xa xôi là <b>remote area</b> (vùng sâu vùng xa)."}, {"q": "While the volunteers ______ the village road, it started to rain heavily.", "opts": ["were cleaning", "clean", "cleans", "will clean"], "ans": 0, "ex": "Hành động đang diễn ra trong quá khứ bị cắt ngang → quá khứ tiếp diễn: <b>were cleaning</b>."}, {"q": "When Mai arrived at the community centre, the children ______ lunch.", "opts": ["have", "has", "have eaten", "were having"], "ans": 3, "ex": "Khi Mai đến (hành động ngắn, quá khứ đơn), bọn trẻ đang ăn trưa → <b>were having</b> (quá khứ tiếp diễn)."}, {"q": "Lan felt ______ after a long day of volunteering at the orphanage.", "opts": ["tiring", "tire", "tired", "tires"], "ans": 2, "ex": "Cảm xúc của người dùng tính từ -ed: Lan felt <b>tired</b> (mệt)."}, {"q": "Helping others is never ______; it always makes us happy.", "opts": ["bore", "boring", "bored", "bores"], "ans": 1, "ex": "Sự việc gây ra cảm xúc dùng tính từ -ing: <b>boring</b> (nhàm chán) — giúp người khác thì không bao giờ nhàm chán."}];
+renderMCQ("#warmBox",warmQ,"warm",10,"warmprog");
+
+/* ---------- FLASHCARDS ---------- */
+const FCARDS=[{"w": "invention", "ipa": "/ɪnˈvenʃn/", "vn": "phát minh", "def": "(noun) a thing that someone has created for the first time", "ex": "The light bulb was a life-changing invention.", "hint": "Edison created the light bulb — a completely new thing. What is it called?", "img": "assets/cards/invention.jpg", "slug": "invention"}, {"w": "experiment", "ipa": "/ɪkˈsperɪmənt/", "vn": "thí nghiệm", "def": "(noun) a scientific test done to learn something or prove an idea", "ex": "The students did an experiment with plants and light.", "hint": "Scientists do this test to check an idea. What is it?", "img": "assets/cards/experiment.jpg", "slug": "experiment"}, {"w": "device", "ipa": "/dɪˈvaɪs/", "vn": "thiết bị", "def": "(noun) a machine or tool made for a special purpose", "ex": "A smartphone is a very useful device.", "hint": "A smartphone or a tablet is an electronic …?", "img": "assets/cards/device.jpg", "slug": "device"}, {"w": "laboratory", "ipa": "/ləˈbɒrətri/", "vn": "phòng thí nghiệm", "def": "(noun) a room where scientists work and do experiments", "ex": "New medicines are tested in a laboratory.", "hint": "Scientists in white coats work in this special room. What is it?", "img": "assets/cards/laboratory.jpg", "slug": "laboratory"}, {"w": "hardware", "ipa": "/ˈhɑːdweə/", "vn": "phần cứng", "def": "(noun) the physical parts of a computer that you can touch", "ex": "The processor and the keyboard are hardware.", "hint": "The parts of a computer you can touch — the screen, the keyboard — are called …?", "img": "assets/cards/hardware.jpg", "slug": "hardware"}, {"w": "software", "ipa": "/ˈsɒftweə/", "vn": "phần mềm", "def": "(noun) the programmes that make a computer work", "ex": "You need special software to edit videos.", "hint": "Programmes and apps on a computer are called …?", "img": "assets/cards/software.jpg", "slug": "software"}, {"w": "equipment", "ipa": "/ɪˈkwɪpmənt/", "vn": "trang thiết bị", "def": "(noun) the tools and machines needed for a job or activity", "ex": "The laboratory has modern equipment.", "hint": "All the tools and machines a laboratory needs are its …?", "img": "assets/cards/equipment.jpg", "slug": "equipment"}, {"w": "suitable", "ipa": "/ˈsuːtəbl/", "vn": "phù hợp, thích hợp", "def": "(adjective) right for a purpose or situation", "ex": "This laptop is suitable for students.", "hint": "This computer is just right for students — it is … for them.", "img": "assets/cards/suitable.jpg", "slug": "suitable"}, {"w": "convenient", "ipa": "/kənˈviːniənt/", "vn": "tiện lợi", "def": "(adjective) easy and useful; saving time", "ex": "Online lessons are convenient for busy students.", "hint": "Learning on your phone is easy and saves time — it is very ….", "img": "assets/cards/convenient.jpg", "slug": "convenient"}, {"w": "valuable", "ipa": "/ˈvæljuəbl/", "vn": "quý giá, có giá trị", "def": "(adjective) very useful or worth a lot", "ex": "The Internet is a valuable tool for learning.", "hint": "This invention is extremely useful and important — it is very ….", "img": "assets/cards/valuable.jpg", "slug": "valuable"}, {"w": "artificial intelligence", "ipa": "/ˌɑːtɪfɪʃl ɪnˈtelɪdʒəns/", "vn": "trí tuệ nhân tạo", "def": "(noun) computer systems that can copy human intelligence (short form: AI)", "ex": "Artificial intelligence can answer questions like a human.", "hint": "Machines that can think and learn like humans use … intelligence.", "img": "assets/cards/artificial-intelligence.jpg", "slug": "artificial-intelligence"}, {"w": "robot", "ipa": "/ˈrəʊbɒt/", "vn": "rô-bốt, người máy", "def": "(noun) a machine that can move and do tasks like a human", "ex": "The robot can walk and talk with people.", "hint": "This machine looks like a person and can walk and talk. What is it?", "img": "assets/cards/robot.jpg", "slug": "robot"}, {"w": "vacuum cleaner", "ipa": "/ˈvækjuəm kliːnə/", "vn": "máy hút bụi", "def": "(noun) a machine that cleans floors by sucking up dust", "ex": "The vacuum cleaner removes dust from the carpet.", "hint": "This machine sucks dust from the floor to clean your house. What is it?", "img": "assets/cards/vacuum-cleaner.jpg", "slug": "vacuum-cleaner"}, {"w": "chatbot", "ipa": "/ˈtʃætbɒt/", "vn": "chatbot (trợ lí trò chuyện tự động)", "def": "(noun) a computer programme that talks to people online and answers questions", "ex": "The chatbot helped me book a flight.", "hint": "This programme chats with you online and answers your questions. What is it?", "img": "assets/cards/chatbot.jpg", "slug": "chatbot"}, {"w": "e reader", "ipa": "/ˈiː riːdə/", "vn": "máy đọc sách điện tử", "def": "(noun) a small device for storing and reading digital books", "ex": "She reads novels on her e-reader.", "hint": "This light device can store hundreds of digital books. What is it?", "img": "assets/cards/e-reader.jpg", "slug": "e-reader"}, {"w": "driverless car", "ipa": "/ˈdraɪvələs kɑː/", "vn": "xe tự lái", "def": "(noun) a car that can travel without a person controlling it", "ex": "Driverless cars may make roads safer.", "hint": "This car drives itself — nobody holds the wheel. What is it called?", "img": "assets/cards/driverless-car.jpg", "slug": "driverless-car"}, {"w": "charge", "ipa": "/tʃɑːdʒ/", "vn": "sạc (pin)", "def": "(verb) to put electricity into a battery", "ex": "You need to charge your phone tonight.", "hint": "Your phone battery is empty. You must … it before tomorrow.", "img": "assets/cards/charge.jpg", "slug": "charge"}, {"w": "button", "ipa": "/ˈbʌtn/", "vn": "nút bấm", "def": "(noun) a small part of a machine that you press to make it work", "ex": "Press the green button to start the machine.", "hint": "You press this small thing to start a machine. What is it?", "img": "assets/cards/button.jpg", "slug": "button"}, {"w": "processor", "ipa": "/ˈprəʊsesə/", "vn": "bộ xử lí", "def": "(noun) the part of a computer that controls all its activities", "ex": "A fast processor makes the computer run quickly.", "hint": "This is the 'brain' of the computer that controls everything. What is it?", "img": "assets/cards/processor.jpg", "slug": "processor"}, {"w": "storage space", "ipa": "/ˈstɔːrɪdʒ speɪs/", "vn": "dung lượng lưu trữ", "def": "(noun) the amount of information a computer can keep", "ex": "This phone has a large storage space for photos.", "hint": "How many photos and files your phone can keep depends on its … space.", "img": "assets/cards/storage-space.jpg", "slug": "storage-space"}];
+fcInit();
+
+/* ---------- MATCHING ---------- */
+const matchQ=[{"q": "invention", "opts": ["thí nghiệm", "phát minh", "thiết bị", "phần mềm"], "ans": 1, "ex": "<b>invention</b> = phát minh."}, {"q": "experiment", "opts": ["thí nghiệm", "phòng thí nghiệm", "phát minh", "trang thiết bị"], "ans": 0, "ex": "<b>experiment</b> = thí nghiệm."}, {"q": "device", "opts": ["nút bấm", "phần cứng", "thiết bị", "rô-bốt"], "ans": 2, "ex": "<b>device</b> = thiết bị."}, {"q": "laboratory", "opts": ["thiết bị", "phần mềm", "thí nghiệm", "phòng thí nghiệm"], "ans": 3, "ex": "<b>laboratory</b> = phòng thí nghiệm."}, {"q": "hardware", "opts": ["phần cứng", "phần mềm", "dung lượng lưu trữ", "chatbot"], "ans": 0, "ex": "<b>hardware</b> = phần cứng."}, {"q": "software", "opts": ["phần cứng", "phần mềm", "thiết bị", "bộ xử lí"], "ans": 1, "ex": "<b>software</b> = phần mềm."}, {"q": "equipment", "opts": ["phát minh", "thí nghiệm", "trang thiết bị", "máy hút bụi"], "ans": 2, "ex": "<b>equipment</b> = trang thiết bị."}, {"q": "robot", "opts": ["xe tự lái", "máy đọc sách điện tử", "chatbot", "rô-bốt, người máy"], "ans": 3, "ex": "<b>robot</b> = rô-bốt, người máy."}, {"q": "chatbot", "opts": ["máy hút bụi", "chatbot (trợ lí trò chuyện tự động)", "xe tự lái", "máy đọc sách điện tử"], "ans": 1, "ex": "<b>chatbot</b> = trợ lí trò chuyện tự động."}, {"q": "processor", "opts": ["nút bấm", "dung lượng lưu trữ", "bộ xử lí", "phần mềm"], "ans": 2, "ex": "<b>processor</b> = bộ xử lí."}];
+selRender("#matchBox",matchQ,"match");
+
+/* ---------- VOCAB GAP ---------- */
+const vgapQ=[{"q": "Scientists do many ______ before they create a new medicine.", "opts": ["inventions", "devices", "experiments", "buttons"], "ans": 2, "ex": "Các nhà khoa học làm nhiều <b>experiments</b> (thí nghiệm) trước khi tạo ra thuốc mới."}, {"q": "You need to ______ your phone because the battery is empty.", "opts": ["charge", "invent", "press", "store"], "ans": 0, "ex": "You need to <b>charge</b> (sạc) your phone…"}, {"q": "This small ______ can translate words in seconds — just speak into it.", "opts": ["laboratory", "hardware", "software", "device"], "ans": 3, "ex": "Một <b>device</b> (thiết bị) nhỏ có thể dịch từ trong vài giây."}, {"q": "Press the green ______ to start the vacuum cleaner.", "opts": ["charge", "button", "processor", "robot"], "ans": 1, "ex": "Press the green <b>button</b> (nút bấm)…"}, {"q": "My new laptop has a fast ______, so programmes open very quickly.", "opts": ["button", "charge", "processor", "laboratory"], "ans": 2, "ex": "…a fast <b>processor</b> (bộ xử lí)…"}, {"q": "With 256 GB of ______, this phone can keep thousands of photos.", "opts": ["hardware", "software", "equipment", "storage space"], "ans": 3, "ex": "256 GB of <b>storage space</b> (dung lượng lưu trữ)."}, {"q": "______ can answer questions and book flights for customers online.", "opts": ["Chatbots", "E-readers", "Robots", "Buttons"], "ans": 0, "ex": "<b>Chatbots</b> có thể trả lời câu hỏi và đặt vé máy bay trực tuyến."}, {"q": "Learning on a phone is ______ for busy students because it saves time and they can study anywhere.", "opts": ["valuable", "convenient", "suitable", "artificial"], "ans": 1, "ex": "Học trên điện thoại rất <b>convenient</b> (tiện lợi) vì tiết kiệm thời gian."}];
+selRender("#vgapBox",vgapQ,"vgap");
+
+/* ---------- GRAMMAR CHECK ---------- */
+const pracQ=[{"q": "Mai ______ just bought a new e-reader for her studies.", "opts": ["have", "has", "is", "does"], "ans": 1, "ex": "Chủ ngữ Mai (số ít) → <b>has</b> + V3: has just bought…"}, {"q": "We ______ in this town since 2020.", "opts": ["live", "lived", "have lived", "lives"], "ans": 2, "ex": "Có 'since 2020' (bắt đầu quá khứ, còn tiếp diễn) → hiện tại hoàn thành: <b>have lived</b>."}, {"q": "______ you ever used a chatbot to learn English?", "opts": ["Have", "Has", "Is", "Does"], "ans": 0, "ex": "Câu hỏi trải nghiệm với 'ever': <b>Have</b> you ever used…?"}, {"q": "He hasn't finished charging his phone ______.", "opts": ["already", "just", "since", "yet"], "ans": 3, "ex": "Phủ định + cuối câu → <b>yet</b>: hasn't finished … yet."}, {"q": "Scientists ______ many useful devices in the last ten years.", "opts": ["invent", "invented last week", "have invented", "invents"], "ans": 2, "ex": "'in the last ten years' → hiện tại hoàn thành: <b>have invented</b>."}, {"q": "She has studied with educational apps ______ three years.", "opts": ["since", "for", "from", "ago"], "ans": 1, "ex": "Khoảng thời gian (three years) → <b>for</b>."}, {"q": "They have ______ invented a robot that can clean the house.", "opts": ["yet", "since", "for", "already"], "ans": 3, "ex": "Việc đã hoàn thành sớm hơn mong đợi → <b>already</b> (đặt giữa have và V3)."}, {"q": "My dad ______ just bought a new laptop with a fast processor.", "opts": ["has", "have", "is", "does"], "ans": 0, "ex": "'just' + việc vừa xảy ra: My dad <b>has</b> just bought…"}];
+renderMCQ("#pracBox",pracQ,"prac",6,"pracprog");
+
+/* ---------- ORDER ---------- */
+initOrder(["Arrive at the City Science Museum for the Invention Exhibition", "See the first telephone and Edison's light bulb", "Try an e-reader and chat with a chatbot", "Ride the bus home and plan a new invention for the classroom"],"ord");
+
+/* ---------- TRUE/FALSE ---------- */
+const tfQ=[{"q": "Mai and Tuan's class visited the City Science Museum.", "ans": true, "ex": "Đúng — cả lớp đến Bảo tàng Khoa học thành phố xem triển lãm Phát minh."}, {"q": "Edison invented the first telephone.", "ans": false, "ex": "Sai — Edison phát minh ra BÓNG ĐÈN; điện thoại đầu tiên chỉ được trưng bày cùng sảnh."}, {"q": "Mai tried an e-reader that could store hundreds of books.", "ans": true, "ex": "Đúng — chiếc e-reader nhỏ có thể chứa hàng trăm cuốn sách."}, {"q": "The chatbot could answer questions and book tickets.", "ans": true, "ex": "Đúng — chatbot trả lời câu hỏi của Tuan và đặt vé trong vài giây."}, {"q": "The robot vacuum cleaner needed a person to push it around the hall.", "ans": false, "ex": "Sai — chỉ cần bấm nút Clean/Start, robot hút bụi tự dọn cả sảnh."}];
+tfRender("#tfBox",tfQ,"tf");
+
+/* ---------- READING ---------- */
+const readQ=[{"q": "What is the main idea of the story?", "opts": ["How to invent a robot", "A school visit to an Invention Exhibition", "The history of the telephone", "How chatbots book flights"], "ans": 1, "ex": "Toàn bài kể về chuyến thăm triển lãm Phát minh tại Bảo tàng Khoa học của lớp Mai và Tuan."}, {"q": "The first telephone and Edison's light bulb were in ______.", "opts": ["the hall of famous inventions", "the school library", "a computer shop", "the bus"], "ans": 0, "ex": "Chúng ở <b>the hall of famous inventions</b> (sảnh phát minh nổi tiếng)."}, {"q": "The word “store” in “an e-reader can store hundreds of books” is closest in meaning to ______.", "opts": ["sell", "buy", "keep", "clean"], "ans": 2, "ex": "<b>store</b> = lưu trữ, giữ lại ≈ <b>keep</b>."}, {"q": "Why was Mai surprised by the e-reader?", "opts": ["Because it was very heavy", "Because it could talk like a person", "Because it was broken", "Because it could store hundreds of books in one small device"], "ans": 3, "ex": "Mai ngạc nhiên vì một thiết bị nhỏ có thể <b>chứa hàng trăm cuốn sách</b>."}, {"q": "What did the robot guide do?", "opts": ["It cleaned the floor", "It greeted the class and talked with visitors", "It sold tickets", "It charged phones"], "ans": 1, "ex": "Robot hướng dẫn viên <b>chào đoàn và nói chuyện với khách</b> tham quan."}, {"q": "Which of the following is NOT true?", "opts": ["The vacuum cleaner cleaned the hall by itself", "Mai wants to invent a device for her classroom", "The class went home by train", "Tuan chatted with a chatbot"], "ans": 2, "ex": "Cả lớp về nhà bằng XE BUÝT (bus), không phải tàu hỏa (train)."}];
+renderMCQ("#readBox",readQ,"read",5,"readprog");
+
+/* ---------- LISTENING GAP ---------- */
+const FORMF=[{"label": "Day:", "accept": ["Saturday"]}, {"label": "Date:", "suffix": "December", "accept": ["14", "14th"]}, {"label": "Starts at:", "accept": ["9:30", "9.30", "930"]}, {"label": "Place:", "accept": ["the school hall", "school hall"]}, {"label": "Speaker: Dr", "accept": ["Quang Huy", "QuangHuy"]}, {"label": "Please bring a:", "accept": ["notebook", "a notebook"]}];
+buildForm('formBox',FORMF,'lgap');
+const LTF=[{"q": "Mai has recently bought an e-reader.", "ans": true, "ex": "Đúng — Mai nói cô vừa mua một chiếc e-reader (diễn đạt lại 'I have just bought…')."}, {"q": "Mai's e-reader can store only ten books.", "ans": false, "ex": "Sai — e-reader chứa được HÀNG TRĂM cuốn sách; Mai mới tải mười cuốn tiểu thuyết."}, {"q": "Tuan's father bought a new laptop a long time ago.", "ans": false, "ex": "Sai — bố Tuan VỪA mua laptop mới (has just bought)."}, {"q": "The new laptop has a fast processor and a large storage space.", "ans": true, "ex": "Đúng — laptop mới có bộ xử lí nhanh và dung lượng lưu trữ lớn."}, {"q": "Mai has already travelled in a driverless car.", "ans": false, "ex": "Sai — Mai CHƯA TỪNG dùng xe tự lái (I have never used a driverless car)."}, {"q": "Tuan has used a chatbot to practise English since last month.", "ans": true, "ex": "Đúng — Tuan đã dùng chatbot luyện tiếng Anh từ tháng trước."}];
+buildTF('ltfBox',LTF,'ltf');
+
+/* ---------- HOMEWORK A ---------- */
+const hwAQ=[{"q": "A thing that someone creates for the first time is called an ______.", "opts": ["invention", "experiment", "equipment", "software"], "ans": 0, "ex": "<b>invention</b> = phát minh — vật được tạo ra lần đầu tiên."}, {"q": "Students do a(n) ______ to test a new idea in science.", "opts": ["device", "experiment", "button", "charge"], "ans": 1, "ex": "Học sinh làm <b>experiment</b> (thí nghiệm) để kiểm chứng ý tưởng."}, {"q": "The physical parts of a computer that you can touch are the ______.", "opts": ["software", "chatbot", "hardware", "processor"], "ans": 2, "ex": "Các bộ phận vật lí chạm được là <b>hardware</b> (phần cứng)."}, {"q": "A car that travels without a person controlling it is a ______.", "opts": ["vacuum cleaner", "e-reader", "robot", "driverless car"], "ans": 3, "ex": "Xe tự di chuyển không cần người lái là <b>driverless car</b> (xe tự lái)."}, {"q": "New medicines are tested in a ______ before people can use them.", "opts": ["laboratory", "hardware", "button", "storage space"], "ans": 0, "ex": "Thuốc mới được kiểm nghiệm trong <b>laboratory</b> (phòng thí nghiệm)."}, {"q": "You need special ______ to edit videos on your computer.", "opts": ["equipment", "software", "device", "charge"], "ans": 1, "ex": "Cần <b>software</b> (phần mềm) chuyên dụng để dựng video."}, {"q": "This course is ______ for students who love science and technology.", "opts": ["valuable", "convenient", "suitable", "artificial"], "ans": 2, "ex": "Khóa học này <b>suitable</b> (phù hợp) với học sinh yêu khoa học công nghệ."}, {"q": "______ helps machines copy human intelligence and learn new things.", "opts": ["Vacuum cleaner", "E-reader", "Chatbot programme", "Artificial intelligence"], "ans": 3, "ex": "<b>Artificial intelligence</b> (trí tuệ nhân tạo) giúp máy móc bắt chước trí thông minh con người."}, {"q": "The ______ removes dust from the carpet quickly and easily.", "opts": ["e-reader", "vacuum cleaner", "processor", "button"], "ans": 1, "ex": "<b>vacuum cleaner</b> (máy hút bụi) hút bụi khỏi thảm."}, {"q": "How much ______ does your phone have for photos and videos?", "opts": ["hardware", "equipment", "storage space", "software"], "ans": 2, "ex": "Điện thoại của bạn có bao nhiêu <b>storage space</b> (dung lượng lưu trữ)?"}];
+selRender("#hwABox",hwAQ,"hwA");
+
+/* ---------- HOMEWORK B ---------- */
+const hwBQ=[{"q": "We ______ English with apps since last year.", "opts": ["learn", "learnt yesterday", "have learnt", "learns"], "ans": 2, "ex": "'since last year' → hiện tại hoàn thành: <b>have learnt</b>."}, {"q": "______ she finished her homework yet?", "opts": ["Have", "Is", "Does", "Has"], "ans": 3, "ex": "Chủ ngữ 'she' + 'yet' → <b>Has</b> she finished… yet?"}, {"q": "I ______ just charged my phone, so the battery is full now.", "opts": ["have", "has", "am", "do"], "ans": 0, "ex": "Việc vừa xảy ra, có kết quả ở hiện tại: I <b>have</b> just charged…"}, {"q": "He has worked in the laboratory ______ 2019.", "opts": ["for", "since", "ago", "yet"], "ans": 1, "ex": "Mốc thời gian (2019) → <b>since</b>."}, {"q": "They ______ the robot exhibition twice this month.", "opts": ["see", "saw yesterday", "have seen", "sees"], "ans": 2, "ex": "'twice this month' (khoảng thời gian chưa kết thúc) → <b>have seen</b>."}, {"q": "Mai ______ never used a driverless car before.", "opts": ["has", "have", "is", "does"], "ans": 0, "ex": "Mai (số ít) → <b>has</b> never used…"}, {"q": "The teacher hasn't checked our writing ______.", "opts": ["already", "just", "since Monday", "yet"], "ans": 3, "ex": "Phủ định, cuối câu → <b>yet</b>."}, {"q": "Tom has lived in this city ______ ten years.", "opts": ["since", "for", "from", "yet"], "ans": 1, "ex": "Khoảng thời gian (ten years) → <b>for</b>."}, {"q": "______ your brother ever invented anything?", "opts": ["Has", "Have", "Is", "Do"], "ans": 0, "ex": "'your brother' (số ít) + 'ever' → <b>Has</b> … ever invented…?"}, {"q": "Scientists have ______ a robot that can help doctors.", "opts": ["invents", "inventing", "invented", "invent yesterday"], "ans": 2, "ex": "Sau have dùng V3: have <b>invented</b>."}];
+selRender("#hwBBox",hwBQ,"hwB");
+
+/* ---------- HOMEWORK C ---------- */
+const hwCQ=[{"q": "Mai and Tuan's class went to ______.", "opts": ["a technology factory", "the City Science Museum", "their school library", "a computer shop"], "ans": 1, "ex": "Cả lớp đến <b>the City Science Museum</b> (Bảo tàng Khoa học thành phố)."}, {"q": "In the hall of famous inventions, the class saw ______.", "opts": ["a driverless car", "a robot vacuum cleaner", "the first telephone and Edison's light bulb", "hundreds of e-readers"], "ans": 2, "ex": "Ở sảnh phát minh nổi tiếng, lớp thấy <b>điện thoại đầu tiên và bóng đèn của Edison</b>."}, {"q": "Mai was surprised because the e-reader could ______.", "opts": ["store hundreds of books", "talk like a person", "clean the floor", "drive itself"], "ans": 0, "ex": "E-reader có thể <b>store hundreds of books</b> (chứa hàng trăm cuốn sách)."}, {"q": "The chatbot on the big screen could ______.", "opts": ["cook lunch", "charge phones", "clean the hall", "answer questions and book tickets"], "ans": 3, "ex": "Chatbot có thể <b>answer questions and book tickets</b> (trả lời câu hỏi và đặt vé)."}, {"q": "The robot guide ______ the visitors when they arrived.", "opts": ["sold tickets to", "greeted and talked with", "took photos of", "drove"], "ans": 1, "ex": "Robot hướng dẫn viên <b>greeted and talked with</b> (chào và trò chuyện với) khách tham quan."}, {"q": "To start the robot vacuum cleaner, you press the ______ button.", "opts": ["Stop", "Charge", "Clean / Start", "Book"], "ans": 2, "ex": "Bấm nút <b>Clean / Start</b> để robot hút bụi bắt đầu dọn."}, {"q": "According to the teacher, inventions have ______.", "opts": ["changed our lives a lot", "made people lazy", "stopped developing", "only helped scientists"], "ans": 0, "ex": "Theo cô giáo, phát minh đã <b>changed our lives a lot</b> (thay đổi cuộc sống rất nhiều)."}, {"q": "At the end of the visit, the students discussed ______.", "opts": ["their homework", "the school hall", "a new laptop", "their favourite inventions"], "ans": 3, "ex": "Cuối buổi, học sinh thảo luận về <b>their favourite inventions</b> (phát minh yêu thích)."}, {"q": "On the bus home, Mai said she wanted to ______.", "opts": ["buy a driverless car", "chat with a chatbot", "invent a useful device for her classroom", "work in a laboratory"], "ans": 2, "ex": "Mai muốn <b>invent a useful device for her classroom</b> (phát minh một thiết bị hữu ích cho lớp học)."}, {"q": "Tuan agreed with Mai and mentioned ______.", "opts": ["Edison's light bulb", "the Technology Fair at school", "a new e-reader", "the school library"], "ans": 1, "ex": "Tuan nhắc đến <b>the Technology Fair</b> (Hội chợ Công nghệ) của trường."}];
+selRender("#hwCBox",hwCQ,"hwC");
+
+showSlide(0);
+</script>
+</body>
+</html>
